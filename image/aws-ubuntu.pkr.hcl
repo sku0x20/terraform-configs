@@ -21,7 +21,12 @@ build {
     "source.amazon-ebs.ubuntu"
   ]
 
-  provisioner "shell" {
-    script = "./data/install-tools.sh"
+  provisioner "file" {
+    source = "./data/install-tools.sh"
+    destination = "/tmp/install-tools.sh"
+  }
+
+  provisioner "shell"{
+    inline = ["sudo", "/tmp/install-tools.sh"]  
   }
 }
