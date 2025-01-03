@@ -22,11 +22,11 @@ build {
   ]
 
   provisioner "file" {
-    source = "./data/install-tools.sh"
+    source      = "./data/install-tools.sh"
     destination = "/tmp/install-tools.sh"
   }
 
-  provisioner "shell"{
-    inline = ["sudo", "/tmp/install-tools.sh"]  
+  provisioner "shell" {
+    inline = ["sudo", "/tmp/install-tools.sh"]
   }
 }
