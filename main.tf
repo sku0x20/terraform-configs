@@ -47,6 +47,9 @@ resource "aws_instance" "server" {
   vpc_security_group_ids      = [aws_security_group.server.id]
   count                       = var.server_count
   associate_public_ip_address = true
+  credit_specification {
+    cpu_credits = "standard"
+  }
 
   tags = {
     name = "${var.name}-server-${count.index}"
