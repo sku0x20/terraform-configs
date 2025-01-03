@@ -27,6 +27,6 @@ build {
   }
 
   provisioner "shell" {
-    inline = ["sudo", "/tmp/install-tools.sh"]
+    inline = ["sudo /tmp/install-tools.sh"]
   }
 }
