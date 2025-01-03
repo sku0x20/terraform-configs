@@ -60,5 +60,7 @@ resource "aws_instance" "server" {
     volume_size           = var.root_block_device_size
     delete_on_termination = true
   }
+
+  user_data = file("./image/data/install-tools.sh")
 }
 
