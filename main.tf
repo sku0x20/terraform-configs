@@ -41,14 +41,15 @@ resource "aws_security_group" "server" {
 }
 
 resource "aws_instance" "server" {
-  ami                    = var.ami
-  instance_type          = var.server_instance_type
-  key_name               = var.key_name
-  vpc_security_group_ids = [aws_security_group.server.id]
-  count                  = var.server_count
+  ami                         = var.ami
+  instance_type               = var.server_instance_type
+  key_name                    = var.key_name
+  vpc_security_group_ids      = [aws_security_group.server.id]
+  count                       = var.server_count
+  associate_public_ip_address = true
 
   tags = {
-    "name" = "${var.name}-server-${count.index}"
+    name = "${var.name}-server-${count.index}"
   }
 
   root_block_device {

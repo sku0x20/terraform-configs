@@ -11,7 +11,7 @@ variable "server_instance_type" {
 }
 
 variable "key_name" {
-  default = "aws-key.pem"
+  default = "aws-key"
 }
 
 variable "server_count" {
