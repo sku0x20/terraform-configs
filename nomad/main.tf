@@ -11,6 +11,10 @@ data "aws_vpc" "default" {
   default = true
 }
 
+data "aws_subnet" "default" {
+  
+}
+
 resource "aws_security_group" "server" {
   name   = "${var.name}-server-security-group"
   vpc_id = data.aws_vpc.default.id
