@@ -7,7 +7,7 @@ variable "ami" {
 }
 
 variable "server_instance_type" {
-  default = "t3a.micro"
+  default = "t3.micro"
 }
 
 variable "key_name" {
