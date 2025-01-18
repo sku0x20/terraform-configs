@@ -15,7 +15,7 @@ variable "key_name" {
 }
 
 variable "server_count" {
-  default = 1
+  default = 3
 }
 
 variable "name" {
