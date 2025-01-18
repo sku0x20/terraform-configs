@@ -62,7 +62,7 @@ data "aws_iam_policy_document" "nomad_assume_role" {
       identifiers = ["ec2.amazonaws.com"]
     }
 
-    actions = ["std:AssumeRole"]
+    actions = ["sts:AssumeRole"]
   }
 }
 
