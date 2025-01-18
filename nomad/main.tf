@@ -53,6 +53,11 @@ resource "aws_iam_policy" "nomad_role_policy" {
   policy = data.aws_iam_policy_document.nomad_role_policy_doc.json
 }
 
+resource "aws_iam_role_policy_attachment" "nomad_role_attach_policy" {
+  role = nomad_role
+  policy_arn = aws_iam_policy.nomad_role_policy.arn
+}
+
 data "aws_iam_policy_document" "nomad_assume_role" {
   statement {
     effect = "Allow"
@@ -69,7 +74,6 @@ data "aws_iam_policy_document" "nomad_assume_role" {
 resource "aws_iam_role" "nomad_role" {
   name                 = "${var.name}-nomad-role"
   assume_role_policy   = data.aws_iam_policy_document.nomad_assume_role.json
-  permissions_boundary = aws_iam_policy.nomad_role_policy.id
 }
 
 resource "aws_iam_instance_profile" "nomad_instance_profile" {
