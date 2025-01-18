@@ -29,7 +29,11 @@ configure_nomad() {
     mkdir --parents /opt/nomad
     useradd --system --home /etc/nomad.d --shell /bin/false nomad
     wget https://raw.githubusercontent.com/sku0x20/terraform-configs/refs/heads/main/nomad/configs/nomad.service
+    mv nomad.service /etc/systemd/system/nomad.service
     mkdir --parents /etc/nomad.d
+    wget https://raw.githubusercontent.com/sku0x20/terraform-configs/refs/heads/main/nomad/configs/nomad.hcl
+    wget https://raw.githubusercontent.com/sku0x20/terraform-configs/refs/heads/main/nomad/configs/server.hcl
+    mv nomad.hcl server.hcl /etc/nomad.d/
 }
 
 start_nomad(){
