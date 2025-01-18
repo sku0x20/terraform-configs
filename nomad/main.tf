@@ -53,6 +53,7 @@ resource "aws_instance" "server" {
 
   tags = {
     name = "${var.name}-server-${count.index}"
+    nomad-instance-type = "server"
   }
 
   root_block_device {
