@@ -23,5 +23,22 @@ install_hashicorp_tools() {
     apt-get install -y nomad
 }
 
+configure_nomad() {
+    nomad -autocomplete-install
+    complete -C /usr/local/bin/nomad nomad
+    mkdir --parents /opt/nomad
+    useradd --system --home /etc/nomad.d --shell /bin/false nomad
+    wget https://raw.githubusercontent.com/sku0x20/terraform-configs/refs/heads/main/nomad/configs/nomad.service
+    mkdir --parents /etc/nomad.d
+}
+
+start_nomad(){
+    systemctl enable nomad
+    systemctl start nomad
+    systemctl status nomad
+}
+
 install_docker
 install_hashicorp_tools
+configure_nomad
+start_nomad
