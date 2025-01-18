@@ -44,12 +44,12 @@ data "aws_iam_policy_document" "nomad_role_policy_doc" {
   statement {
     effect    = "Allow"
     actions   = ["ec2:DescribeInstances"]
-    resources = "*"
+    resources = ["*"]
   }
 }
 
 resource "aws_iam_policy" "nomad_role_policy" {
-  name   = "nomad role policy"
+  name   = "${var.name}-nomad-role-policy"
   policy = data.aws_iam_policy_document.nomad_role_policy_doc.json
 }
 
@@ -67,13 +67,13 @@ data "aws_iam_policy_document" "nomad_assume_role" {
 }
 
 resource "aws_iam_role" "nomad_role" {
-  name                 = "nomad_role"
+  name                 = "${var.name}-nomad-role"
   assume_role_policy   = data.aws_iam_policy_document.nomad_assume_role.json
   permissions_boundary = aws_iam_policy.nomad_role_policy.id
 }
 
 resource "aws_iam_instance_profile" "nomad_instance_profile" {
-  name = "nomad-profile"
+  name = "${var.name}-nomad-instance-profile"
   role = aws_iam_role.nomad_role.id
 }
 
