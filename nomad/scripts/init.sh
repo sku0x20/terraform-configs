@@ -2,6 +2,6 @@
 
 apt-get -y update
 apt-get -y install wget
-wget https://raw.githubusercontent.com/sku0x20/terraform-configs/refs/heads/main/scripts/install-tools.sh
+wget https://raw.githubusercontent.com/sku0x20/terraform-configs/refs/heads/main/nomad/scripts/install-tools.sh
 chmod +x install-tools.sh
 ./install-tools.sh
