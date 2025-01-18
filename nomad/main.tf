@@ -40,6 +40,43 @@ resource "aws_security_group" "server" {
 
 }
 
+data "aws_iam_policy_document" "nomad_role_policy_doc" {
+  statement {
+    effect    = "Allow"
+    actions   = ["ec2:DescribeInstances"]
+    resources = "*"
+  }
+}
+
+resource "aws_iam_policy" "nomad_role_policy" {
+  name   = "nomad role policy"
+  policy = data.aws_iam_policy_document.nomad_role_policy_doc.json
+}
+
+data "aws_iam_policy_document" "nomad_assume_role" {
+  statement {
+    effect = "Allow"
+
+    principals {
+      type        = "Service"
+      identifiers = ["ec2.amazonaws.com"]
+    }
+
+    actions = ["std:AssumeRole"]
+  }
+}
+
+resource "aws_iam_role" "nomad_role" {
+  name                 = "nomad_role"
+  assume_role_policy   = data.aws_iam_policy_document.nomad_assume_role.json
+  permissions_boundary = aws_iam_policy.nomad_role_policy.id
+}
+
+resource "aws_iam_instance_profile" "nomad_instance_profile" {
+  name = "nomad-profile"
+  role = aws_iam_role.nomad_role.id
+}
+
 resource "aws_instance" "server" {
   ami                         = var.ami
   instance_type               = var.server_instance_type
@@ -51,8 +88,9 @@ resource "aws_instance" "server" {
     cpu_credits = "standard"
   }
 
+  iam_instance_profile = aws_iam_instance_profile.nomad_instance_profile.id
   tags = {
-    name = "${var.name}-server-${count.index}"
+    name                = "${var.name}-server-${count.index}"
     nomad-instance-type = "server"
   }
 
