@@ -107,3 +107,6 @@ resource "aws_instance" "server" {
   user_data = file("./scripts/init.sh")
 }
 
+// todo: enable ipv4 in subnet;
+// amazonaws.com not ipv6 enabled; nat gateway unnecessary cost 
+
