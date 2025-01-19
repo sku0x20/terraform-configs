@@ -10,11 +10,19 @@ variable "server_instance_type" {
   default = "t3.micro"
 }
 
+variable "client_instance_type" {
+  default = "t3.micro"
+}
+
 variable "key_name" {
   default = "aws-key"
 }
 
 variable "server_count" {
+  default = 3
+}
+
+variable "client_count" {
   default = 3
 }
 

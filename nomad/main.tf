@@ -40,6 +40,51 @@ resource "aws_security_group" "server" {
 
 }
 
+resource "aws_security_group" "client" {
+  name   = "${var.name}-client-security-group"
+  vpc_id = data.aws_vpc.default.id
+
+  ingress {
+    from_port        = 22
+    to_port          = 22
+    protocol         = "tcp"
+    cidr_blocks      = ["0.0.0.0/0"]
+    ipv6_cidr_blocks = ["::/0"]
+  }
+
+  ingress {
+    from_port        = 80
+    to_port          = 80
+    protocol         = "tcp"
+    cidr_blocks      = ["0.0.0.0/0"]
+    ipv6_cidr_blocks = ["::/0"]
+  }
+
+  ingress {
+    from_port        = 443
+    to_port          = 443
+    protocol         = "tcp"
+    cidr_blocks      = ["0.0.0.0/0"]
+    ipv6_cidr_blocks = ["::/0"]
+  }
+
+  ingress {
+    from_port = 0
+    to_port   = 0
+    protocol  = "-1"
+    self      = true
+  }
+
+  egress {
+    from_port        = 0
+    to_port          = 0
+    protocol         = "-1"
+    cidr_blocks      = ["0.0.0.0/0"]
+    ipv6_cidr_blocks = ["::/0"]
+  }
+
+}
+
 data "aws_iam_policy_document" "nomad_role_policy_doc" {
   statement {
     effect    = "Allow"
@@ -54,7 +99,7 @@ resource "aws_iam_policy" "nomad_role_policy" {
 }
 
 resource "aws_iam_role_policy_attachment" "nomad_role_attach_policy" {
-  role = aws_iam_role.nomad_role.id
+  role       = aws_iam_role.nomad_role.id
   policy_arn = aws_iam_policy.nomad_role_policy.arn
 }
 
@@ -72,8 +117,8 @@ data "aws_iam_policy_document" "nomad_assume_role" {
 }
 
 resource "aws_iam_role" "nomad_role" {
-  name                 = "${var.name}-nomad-role"
-  assume_role_policy   = data.aws_iam_policy_document.nomad_assume_role.json
+  name               = "${var.name}-nomad-role"
+  assume_role_policy = data.aws_iam_policy_document.nomad_assume_role.json
 }
 
 resource "aws_iam_instance_profile" "nomad_instance_profile" {
@@ -105,6 +150,32 @@ resource "aws_instance" "server" {
   }
 
   user_data = file("./scripts/server/init.sh")
+}
+
+resource "aws_instance" "client" {
+  ami                         = var.ami
+  instance_type               = var.client_instance_type
+  key_name                    = var.key_name
+  vpc_security_group_ids      = [aws_security_group.client.id]
+  count                       = var.client_count
+  associate_public_ip_address = true
+  credit_specification {
+    cpu_credits = "standard"
+  }
+
+  iam_instance_profile = aws_iam_instance_profile.nomad_instance_profile.id
+  tags = {
+    name                = "${var.name}-client-${count.index}"
+    nomad-instance-type = "client"
+  }
+
+  root_block_device {
+    volume_type           = "gp3"
+    volume_size           = var.root_block_device_size
+    delete_on_termination = true
+  }
+
+  user_data = file("./scripts/client/init.sh")
 }
 
 // public ipv4 enabled subnet;
