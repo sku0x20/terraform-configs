@@ -33,7 +33,7 @@ resource "aws_security_group" "server" {
   ingress {
     from_port        = 0
     to_port          = 0
-    protocol         = "tcp"
+    protocol         = "-1"
     cidr_blocks      = [data.aws_vpc.default.cidr_block]
     ipv6_cidr_blocks = [data.aws_vpc.default.ipv6_cidr_block]
   }
@@ -79,7 +79,7 @@ resource "aws_security_group" "client" {
   ingress {
     from_port        = 0
     to_port          = 0
-    protocol         = "tcp"
+    protocol         = "-1"
     cidr_blocks      = [data.aws_vpc.default.cidr_block]
     ipv6_cidr_blocks = [data.aws_vpc.default.ipv6_cidr_block]
   }
