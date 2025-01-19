@@ -34,8 +34,8 @@ resource "aws_security_group" "server" {
     from_port        = 0
     to_port          = 0
     protocol         = "tcp"
-    cidr_blocks      = aws_vpc.default.cidr_block
-    ipv6_cidr_blocks = aws_vpc.default.ipv6_cidr_block
+    cidr_blocks      = [data.aws_vpc.default.cidr_block]
+    ipv6_cidr_blocks = [data.aws_vpc.default.ipv6_cidr_block]
   }
 
   egress {
@@ -80,8 +80,8 @@ resource "aws_security_group" "client" {
     from_port        = 0
     to_port          = 0
     protocol         = "tcp"
-    cidr_blocks      = aws_vpc.default.cidr_block
-    ipv6_cidr_blocks = aws_vpc.default.ipv6_cidr_block
+    cidr_blocks      = [data.aws_vpc.default.cidr_block]
+    ipv6_cidr_blocks = [data.aws_vpc.default.ipv6_cidr_block]
   }
 
   ingress {
