@@ -107,6 +107,6 @@ resource "aws_instance" "server" {
   user_data = file("./scripts/init.sh")
 }
 
-// todo: enable ipv4 in subnet;
+// public ipv4 enabled subnet;
 // amazonaws.com not ipv6 enabled; nat gateway unnecessary cost 
-
+// cannot figure out how to add public ipv4 for vm when launching
