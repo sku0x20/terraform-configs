@@ -104,7 +104,7 @@ resource "aws_instance" "server" {
     delete_on_termination = true
   }
 
-  user_data = file("./scripts/init.sh")
+  user_data = file("./scripts/server/init.sh")
 }
 
 // public ipv4 enabled subnet;
