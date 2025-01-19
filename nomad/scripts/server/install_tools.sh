@@ -3,17 +3,6 @@
 export DEBIAN_FRONTEND=noninteractive
 echo 'debconf debconf/frontend select Noninteractive' | debconf-set-selections
 
-install_docker() {
-    apt-get update
-    apt-get install -y ca-certificates curl
-    install -m 0755 -d /etc/apt/keyrings
-    curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc
-    chmod a+r /etc/apt/keyrings/docker.asc
-    echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu $(. /etc/os-release && echo "$VERSION_CODENAME") stable" | tee /etc/apt/sources.list.d/docker.list >/dev/null
-    apt-get update
-    apt-get install -y docker-ce docker-ce-cli containerd.io docker-compose-plugin
-}
-
 install_hashicorp_tools() {
     apt-get update
     apt-get -y install wget gpg coreutils
@@ -29,11 +18,11 @@ configure_nomad() {
     useradd --system --home /etc/nomad.d --shell /bin/false nomad
     mkdir --parents /opt/nomad
     chown nomad:nomad /opt/nomad
-    wget https://raw.githubusercontent.com/sku0x20/terraform-configs/refs/heads/main/nomad/configs/nomad.service
+    wget https://raw.githubusercontent.com/sku0x20/terraform-configs/refs/heads/main/nomad/configs/server/nomad.service
     mv nomad.service /etc/systemd/system/nomad.service
     mkdir --parents /etc/nomad.d
-    wget https://raw.githubusercontent.com/sku0x20/terraform-configs/refs/heads/main/nomad/configs/nomad.hcl
-    wget https://raw.githubusercontent.com/sku0x20/terraform-configs/refs/heads/main/nomad/configs/server.hcl
+    wget https://raw.githubusercontent.com/sku0x20/terraform-configs/refs/heads/main/nomad/configs/common/nomad.hcl
+    wget https://raw.githubusercontent.com/sku0x20/terraform-configs/refs/heads/main/nomad/configs/server/server.hcl
     mv nomad.hcl server.hcl /etc/nomad.d/
 }
 
@@ -43,7 +32,6 @@ start_nomad(){
     systemctl status nomad
 }
 
-install_docker
 install_hashicorp_tools
 configure_nomad
 start_nomad
