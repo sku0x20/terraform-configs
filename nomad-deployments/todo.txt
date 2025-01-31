@@ -1,0 +1,15 @@
+====
+
+- stateless service
+- scaling stateless service
+- rolling update stateless service
+
+====
+
+- deploy mongo
+- deploy redis
+
+====
+
+- aws load balancer in front
+- nginx/caddy in load balancer in front; ha mode
