@@ -6,6 +6,10 @@
 
 ====
 
+- stateless service x calls y; y calls x
+
+====
+
 - deploy mongo
 - deploy redis
 
