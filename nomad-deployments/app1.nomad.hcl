@@ -16,6 +16,15 @@ job "app-1" {
         image = "sku0x20/app-1:1"
         ports = ["http"]
       }
+
+      template {
+        data        = <<EOH
+APP_NAME=app-1
+EOH
+        env         = true
+        destination = "secrets/.env"
+      }
+
     }
 
     update {
