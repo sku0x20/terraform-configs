@@ -1,0 +1,9 @@
+{
+  "name": "dummy",
+  "module": "index.js",
+  "type": "module",
+  "private": true,
+  "devDependencies": {
+    "@types/bun": "latest"
+  }
+}
