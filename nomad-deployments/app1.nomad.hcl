@@ -19,8 +19,8 @@ job "app-1" {
 
       template {
         data        = <<EOH
-APP_NAME=app-1
-EOH
+            APP_NAME=app-1
+        EOH
         env         = true
         destination = "secrets/.env"
       }
