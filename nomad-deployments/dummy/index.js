@@ -27,7 +27,9 @@ async function call(req) {
     })
     const resp = await f.json()
     return Response.json({
-        "app": `${appToCall}`,
+        "api": "/call",
+        "name": `${process.env.APP_NAME}`,
+        "toCall": `${appToCall}`,
         "resp": resp
     })
 }
