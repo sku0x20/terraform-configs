@@ -1,4 +1,5 @@
-FROM oven/bun:1-alpine AS base
+# issue with debain based image. 
+FROM oven/bun:1-alpine AS base 
 WORKDIR /usr/src/app
 
 FROM base AS install
