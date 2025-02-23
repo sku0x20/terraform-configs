@@ -13,7 +13,7 @@ job "app-1" {
     task "app-1" {
       driver = "docker"
       config {
-        image = "sku0x20/app-1:1"
+        image = "sku0x20/dummy:3"
         ports = ["http"]
       }
 
