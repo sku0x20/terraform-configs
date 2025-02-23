@@ -29,6 +29,12 @@ job "app-2" {
         destination = "secrets/.env"
       }
 
+      service {
+        name     = "app-2"
+        port     = "http"
+        provider = "nomad"
+      }
+
     }
 
     update {
