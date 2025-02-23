@@ -2,7 +2,14 @@ const server = Bun.serve({
     port: 3000,
     routes: {
         "/describe": describe,
-        "/call/:appId": call,
+        "/call/static": () => {
+            console.log(`static call`);
+            return call(process.env.APP_OTHER)
+        },
+        "/call/dynamic": () => {
+            console.log(`dynamic call`);
+            return new Response("todo", { status: 500 })
+        },
         "/*": new Response("not found", { status: 404 })
     },
 })
@@ -18,9 +25,9 @@ function describe(req) {
     })
 }
 
-async function call(req) {
-    const appToCall = req.params.appId
-    const f = await fetch(`http://${appToCall}/describe`, {
+async function call(otherAppAddress) {
+    console.log(`call other -> ${otherAppAddress}`);
+    const f = await fetch(`http://${otherAppAddress}/describe`, {
         headers: {
             referer: `${process.env.APP_NAME}`
         }
@@ -29,7 +36,7 @@ async function call(req) {
     return Response.json({
         "api": "/call",
         "name": `${process.env.APP_NAME}`,
-        "toCall": `${appToCall}`,
+        "other": `${otherAppAddress}`,
         "resp": resp
     })
 }
