@@ -21,7 +21,7 @@ job "app-1" {
         data        = <<EOH
             APP_NAME=app-1
             {{ range nomadService "app-2" }}
-              server={{ .Address }}:{{ .Port }}
+              APP_OTHER={{ .Address }}:{{ .Port }}
             {{ end }}
         EOH
         env         = true
