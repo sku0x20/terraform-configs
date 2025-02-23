@@ -24,9 +24,12 @@ job "app-2" {
       template {
         data        = <<EOH
             APP_NAME={{ env "NOMAD_META_app_name" }}
+            {{ range nomadService "app-1" }}
+              APP_OTHER={{ .Address }}:{{ .Port }}
+            {{ end }}
         EOH
         env         = true
-        destination = "secrets/.env"
+        destination = "local/.env"
       }
 
       service {
