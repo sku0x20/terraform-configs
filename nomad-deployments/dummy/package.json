@@ -3,6 +3,7 @@
   "module": "index.js",
   "type": "module",
   "private": true,
+  "version": "3",
   "scripts": {
     "start": "bun run index.js"
   },
