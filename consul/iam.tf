@@ -8,7 +8,7 @@ data "aws_iam_policy_document" "ec2_role_policy_doc" {
 
 resource "aws_iam_policy" "ec2_role_policy" {
   name   = "${var.name}-ec2-role-policy"
-  policy = data.aws_iam_policy_document.ec2_role_policy_doc
+  policy = data.aws_iam_policy_document.ec2_role_policy_doc.json
 }
 
 data "aws_iam_policy_document" "ec2_assume_role" {

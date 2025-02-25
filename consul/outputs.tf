@@ -3,7 +3,7 @@ output "server_public_ips" {
 }
 
 output "server_ipv6_ips" {
-  value = aws_instance.server[*].ipv6_addresses[*].public_ip
+  value = aws_instance.server[*].ipv6_addresses[*]
 }
 
 output "client_public_ips" {
@@ -11,5 +11,5 @@ output "client_public_ips" {
 }
 
 output "client_ipv6_ips" {
-  value = aws_instance.client[*].ipv6_addresses[*].public_ip
+  value = aws_instance.client[*].ipv6_addresses[*]
 }

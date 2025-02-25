@@ -5,7 +5,7 @@ data "aws_vpc" "default" {
 
 resource "aws_security_group" "server" {
   name   = "${var.name}-server-security-group"
-  vpc_id = data.aws_vpc.default
+  vpc_id = data.aws_vpc.default.id
 
   ingress {
     from_port        = 22
@@ -41,6 +41,7 @@ resource "aws_security_group" "server" {
   egress {
     from_port        = 0
     to_port          = 0
+    protocol         = "-1"
     cidr_blocks      = ["0.0.0.0/0"]
     ipv6_cidr_blocks = ["::/0"]
   }
@@ -48,7 +49,7 @@ resource "aws_security_group" "server" {
 
 resource "aws_security_group" "client" {
   name   = "${var.name}-client-sercuity-group"
-  vpc_id = data.aws_vpc.default
+  vpc_id = data.aws_vpc.default.id
 
   ingress {
     from_port        = 22
