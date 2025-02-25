@@ -21,7 +21,7 @@ resource "aws_instance" "server" {
     delete_on_termination = true
   }
 
-  user_data = file("./scipts/server/init.sh")
+  # user_data = file("./scipts/server/init.sh")
 }
 
 resource "aws_instance" "client" {
@@ -47,7 +47,7 @@ resource "aws_instance" "client" {
     delete_on_termination = true
   }
 
-  user_data = file("./scripts/client/init.sh")
+  # user_data = file("./scripts/client/init.sh")
 }
 
 // public ipv4 enabled subnet;

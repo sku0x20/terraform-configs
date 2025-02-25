@@ -29,11 +29,11 @@ variable "server_root_block_device_size" {
   default = 10
 }
 
+// --- client ---
+
 variable "client_count" {
   default = 3
 }
-
-// --- client ---
 
 variable "client_instance_type" {
   default = "t3.micro"
