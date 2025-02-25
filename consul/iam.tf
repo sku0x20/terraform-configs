@@ -1,7 +1,7 @@
 data "aws_iam_policy_document" "ec2_role_policy_doc" {
   statement {
     effect    = "Allow"
-    actions   = ["ec2:DescribeInstance"]
+    actions   = ["ec2:DescribeInstances"]
     resources = ["*"]
   }
 }
