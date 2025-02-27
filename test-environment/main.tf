@@ -61,3 +61,12 @@ resource "aws_instance" "vm" {
   }
 }
 
+data "cloudinit_config" "my_cloud_config" {
+  gzip          = false
+  base64_encode = false
+  part {
+    content_type = "text/cloud-config"
+    filename = "cloud.conf"
+    content = 
+  }
+}
