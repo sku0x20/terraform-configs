@@ -11,7 +11,7 @@ resource "aws_instance" "server" {
   }
   iam_instance_profile = aws_iam_instance_profile.ec2_instance_profile.id
   tags = {
-    name                 = "${var.name}-server-${count.index}"
+    Name                 = "${var.name}-server-${count.index}"
     consul-instance-type = "server"
   }
 
@@ -37,7 +37,7 @@ resource "aws_instance" "client" {
 
   iam_instance_profile = aws_iam_instance_profile.ec2_instance_profile.id
   tags = {
-    name                 = "${var.name}-client-${count.index}"
+    Name                 = "${var.name}-client-${count.index}"
     consul-instance-type = "client"
   }
 
