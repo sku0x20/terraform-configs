@@ -17,4 +17,7 @@ resource "aws_instance" "vm" {
     volume_size           = var.root_block_device_size
     delete_on_termination = true
   }
+
+  # user_data = data.cloudinit_config.my_cloud_config
+
 }
