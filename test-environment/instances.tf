@@ -18,6 +18,6 @@ resource "aws_instance" "vm" {
     delete_on_termination = true
   }
 
-  user_data = data.cloudinit_config.my_cloud_config
+  user_data = data.cloudinit_config.my_cloud_config.rendered
 
 }

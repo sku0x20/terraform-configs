@@ -10,5 +10,19 @@ data "cloudinit_config" "my_cloud_config" {
     content_type = "text/x-shellscript"
     content      = file("${path.module}/data/run_script.sh")
   }
+
+  // write files via cloud-config as multipath doesn't support writting plain files
+  part {
+    filename     = "cloud-config.yaml"
+    content_type = "text/cloud-config"
+    content = yamlencode({
+      write_files : [
+        {
+          path : "/tmp/some-data.txt"
+          content : file("${path.module}/data/some-data.txt")
+        }
+      ]
+    })
+  }
 }
 
