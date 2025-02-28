@@ -1,24 +1,24 @@
 ====
 
-- stateless service
-- scaling stateless service
-- rolling update stateless service
+[x] stateless service
+[x] scaling stateless service
+[x] rolling update stateless service
 
 ====
 
-- stateless service x calls y; y calls x
+[o] stateless service x calls y; y calls x
 
 ====
 
-- deploy mongo
-- deploy redis
+[o] deploy mongo
+[o] deploy redis
 
 ====
 
-- aws load balancer in front
-- nginx/caddy in load balancer in front; ha mode
+[o] aws load balancer in front
+[o] nginx/caddy in load balancer in front; ha mode
 
 
 ====
 
-- git ops
+[o] git ops
