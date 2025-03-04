@@ -22,7 +22,11 @@ resource "aws_instance" "client" {
     delete_on_termination = true
   }
 
-  # user_data = data.cloudinit_config.client_cloud_config.rendered
+  user_data = templatefile("${path.module}/configs/consul.yaml", {
+    consul_config   = file("${path.module}/configs/consul.hcl")
+    systemd_service = file("${path.module}/configs/consul.service")
+    server_config   = ""
+  })
 }
 
 // public ipv4 enabled subnet;
