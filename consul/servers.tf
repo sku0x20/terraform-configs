@@ -21,6 +21,6 @@ resource "aws_instance" "server" {
     delete_on_termination = true
   }
 
-  user_data = data.cloudinit_config.server_cloud_config.rendered
+  # user_data = data.cloudinit_config.server_cloud_config.rendered
 }
 

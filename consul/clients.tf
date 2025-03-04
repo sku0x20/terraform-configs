@@ -22,7 +22,7 @@ resource "aws_instance" "client" {
     delete_on_termination = true
   }
 
-  user_data = data.cloudinit_config.client_cloud_config.rendered
+  # user_data = data.cloudinit_config.client_cloud_config.rendered
 }
 
 // public ipv4 enabled subnet;
