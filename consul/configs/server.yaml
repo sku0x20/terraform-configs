@@ -7,6 +7,9 @@ packages:
   - wget
   - unzip
 
+runcmd:
+  - /opt/init/install-consul.sh
+
 users:
   - name: consul
     system: true
@@ -25,6 +28,13 @@ write_files:
       chown root:root /usr/bin/consul
       mkdir -p /opt/consul
       chown --recursive consul:consul /opt/consul
+  
+  - path: /etc/consul.d/consul.hcl
+    owner: consul:consul
+    permissions: '0o644'
+    content: ${consul_hcl}
 
-runcmd:
-  - /opt/init/install-consul.sh
+  - path: /etc/consul.d/server.hcl
+    owner: consul:consul
+    permissions: '0o644'
+    content: ${consul_server}
