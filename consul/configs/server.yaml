@@ -28,6 +28,9 @@ write_files:
       chown root:root /usr/bin/consul
       mkdir -p /opt/consul
       chown --recursive consul:consul /opt/consul
+      systemctl daemon-reload
+      systemctl enable consul
+      systemctl start consul
 
   - path: /etc/consul.d/consul.hcl
     owner: consul:consul
