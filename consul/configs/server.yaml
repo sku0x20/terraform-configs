@@ -7,6 +7,12 @@ packages:
   - wget
   - unzip
 
+users:
+  - name: consul
+    system: true
+    homedir: "/etc/consul.d"
+    shell: /bin/false
+
 write_files:
   - path: /opt/init/install-consul.sh
     permissions: "0o755"
@@ -15,7 +21,10 @@ write_files:
       mkdir -p /opt/init/consul
       unzip /opt/init/consul.zip /opt/init/consul/
       cp /opt/init/consul/consul /usr/local/bin/consul
-      chmod +x /usr/local/bin/consul
+      chmod +x /usr/bin/consul
+      chown root:root /usr/bin/consul
+      mkdir -p /opt/consul
+      chown --recursive consul:consul /opt/consul
 
 runcmd:
   - /opt/init/install-consul.sh
