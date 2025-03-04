@@ -35,16 +35,13 @@ write_files:
   - path: /etc/consul.d/consul.hcl
     owner: consul:consul
     permissions: "0o644"
-    content: |
-      ${consul_config}
+    content: ${consul_config}
 
   - path: /etc/consul.d/server.hcl
     owner: consul:consul
     permissions: "0o644"
-    content: |
-      ${server_config}
+    content: ${server_config}
 
   - path: /etc/systemd/system/consul.service
     permissions: "0o644"
-    content: |
-      ${systemd_service}
+    content: ${systemd_service}
