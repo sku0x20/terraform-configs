@@ -21,12 +21,12 @@ resource "aws_instance" "server" {
     delete_on_termination = true
   }
 
-  user_data = templatefile("${path.module}/configs/nomad.yaml"){
+  user_data = templatefile("${path.module}/configs/nomad.yaml", {
     nomad_config = filebase64("${path.module}/configs/nomad.hcl")
     systemd_service = filebase64("${path.module}/configs/nomad.service")
     server_config = filebase64("${path.module}/configs/server.hcl")
     client_config = ""
-  }
+  })
 }
 
 // public ipv4 enabled subnet;
