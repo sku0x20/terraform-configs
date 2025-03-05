@@ -6,6 +6,7 @@ package_upgrade: false
 packages:
   - wget
   - unzip
+  - docker.io
 
 users:
   - default
