@@ -1,11 +1,11 @@
 
-resource "aws_instance" "server" {
-  count = var.server_count
+resource "aws_instance" "client" {
+  count = var.client_count
 
   ami                    = var.ami
-  instance_type          = var.server_instance_type
+  instance_type          = var.client_instance_type
   key_name               = var.key_name
-  vpc_security_group_ids = [aws_security_group.server.id]
+  vpc_security_group_ids = [aws_security_group.client.id]
   credit_specification {
     cpu_credits = "standard"
   }
@@ -17,7 +17,7 @@ resource "aws_instance" "server" {
 
   root_block_device {
     volume_type           = "gp3"
-    volume_size           = var.server_root_block_device_size
+    volume_size           = var.client_root_block_device_size
     delete_on_termination = true
   }
 
