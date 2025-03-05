@@ -21,9 +21,9 @@ write_files:
   - path: /opt/init/install-consul.sh
     permissions: "0o755"
     content: |
-      wget -O consul.zip https://releases.hashicorp.com/consul/1.20.4/consul_1.20.4_linux_amd64.zip
+      wget -O /opt/init/consul.zip https://releases.hashicorp.com/consul/1.20.4/consul_1.20.4_linux_amd64.zip
       mkdir -p /opt/init/consul
-      unzip /opt/init/consul.zip /opt/init/consul/
+      unzip -d /opt/init/consul/ /opt/init/consul.zip
       cp /opt/init/consul/consul /usr/local/bin/consul
       chmod +x /usr/local/bin/consul
       chown root:root /usr/local/bin/consul
