@@ -24,7 +24,7 @@ write_files:
       wget -O consul.zip https://releases.hashicorp.com/consul/1.20.4/consul_1.20.4_linux_amd64.zip
       mkdir -p /opt/init/consul
       unzip /opt/init/consul.zip /opt/init/consul/
-      cp /opt/init/consul/consul /usr/local/bin/consul
+      cp /opt/init/consul/consul /usr/bin/consul
       chmod +x /usr/bin/consul
       chown root:root /usr/bin/consul
       mkdir -p /opt/consul
