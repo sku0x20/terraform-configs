@@ -8,6 +8,9 @@ packages:
   - unzip
   - docker.io
 
+runcmd:
+  - /opt/init/install-nomad.sh
+
 users:
   - default
 

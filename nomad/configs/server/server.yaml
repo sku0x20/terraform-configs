@@ -7,6 +7,9 @@ packages:
   - wget
   - unzip
 
+runcmd:
+  - /opt/init/install-nomad.sh
+
 users:
   - default
   - name: nomad
