@@ -7,10 +7,11 @@ packages:
   - wget
   - unzip
 
-runcmd:
-  - /opt/init/install-consul.sh
+# runcmd:
+#   - /opt/init/install-consul.sh
 
 users:
+  - default
   - name: consul
     system: true
     homedir: "/etc/consul.d"
@@ -33,15 +34,21 @@ write_files:
       systemctl start consul
 
   - path: /etc/consul.d/consul.hcl
+    defer: true
     owner: consul:consul
     permissions: "0o644"
-    content: ${consul_config}
+    encoding: b64
+    content: "${consul_config}"
 
   - path: /etc/consul.d/server.hcl
+    defer: true
     owner: consul:consul
     permissions: "0o644"
-    content: ${server_config}
+    encoding: b64
+    content: "${server_config}"
 
   - path: /etc/systemd/system/consul.service
+    defer: true
     permissions: "0o644"
-    content: ${systemd_service}
+    encoding: b64
+    content: "${systemd_service}"

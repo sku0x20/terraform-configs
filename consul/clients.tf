@@ -23,8 +23,8 @@ resource "aws_instance" "client" {
   }
 
   user_data = templatefile("${path.module}/configs/consul.yaml", {
-    consul_config   = file("${path.module}/configs/consul.hcl")
-    systemd_service = file("${path.module}/configs/consul.service")
+    consul_config   = filebase64("${path.module}/configs/consul.hcl")
+    systemd_service = filebase64("${path.module}/configs/consul.service")
     server_config   = ""
   })
 }
