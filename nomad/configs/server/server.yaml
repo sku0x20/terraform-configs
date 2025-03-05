@@ -1,0 +1,51 @@
+#cloud-config
+
+package_update: false
+package_upgrade: false
+
+packages:
+  - wget
+  - unzip
+
+users:
+  - default
+  - name: nomad
+    system: true
+    homedir: "/etc/nomad.d"
+    shell: /bin/false
+
+write_files:
+  - path: /opt/init/install-nomad.sh
+    permissions: "0o755"
+    content: |
+      wget -0 /opt/init/nomad.zip https://releases.hashicorp.com/nomad/1.9.6/nomad_1.9.6_linux_amd64.zip
+      mkdir -p /opt/init/nomad
+      unzip -d /opt/init/nomad/ /opt/init/nomad.zip
+      cp /opt/init/nomad/nomad /usr/local/bin/nomad
+      chmod +x /usr/local/bin/nomad
+      chown root:root /usr/local/bin/nomad
+      mkdir -p /opt/nomad
+      chown --recursive nomad:nomad /opt/nomad
+      systemctl daemon-reload
+      systemctl enable nomad
+      systemctl start nomad
+
+  - path: /etc/nomad.d/nomad.hcl
+    defer: true
+    owner: nomad:nomad
+    permissions: "0o644"
+    encoding: b64
+    content: "${nomad_config}"
+
+  - path: /etc/nomad.d/server.hcl
+    defer: true
+    owner: nomad:nomad
+    permissions: "0o644"
+    encoding: b64
+    content: "${server_config}"
+
+  - path: /etc/systemd/system/nomad.service
+    defer: true
+    permissions: "0o644"
+    encoding: b64
+    content: "${systemd_service}"
