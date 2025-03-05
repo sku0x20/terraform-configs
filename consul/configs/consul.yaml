@@ -7,8 +7,8 @@ packages:
   - wget
   - unzip
 
-# runcmd:
-#   - /opt/init/install-consul.sh
+runcmd:
+  - /opt/init/install-consul.sh
 
 users:
   - default
