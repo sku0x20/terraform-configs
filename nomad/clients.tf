@@ -14,17 +14,16 @@ resource "aws_instance" "server" {
     Name                = "${var.name}-client-${count.index}"
     nomad-instance-type = "client"
   }
-  
+
   root_block_device {
-    volume_type = "gp3"
-    volume_size = var.server_root_block_device_size
+    volume_type           = "gp3"
+    volume_size           = var.server_root_block_device_size
     delete_on_termination = true
   }
 
-  user_data = templatefile("${path.module}/configs/nomad.yaml", {
-    nomad_config = filebase64("${path.module}/configs/nomad.hcl")
-    systemd_service = filebase64("${path.module}/configs/nomad.service")
-    server_config = ""
-    client_config = filebase64("${path.module}/configs/client.hcl")
+  user_data = templatefile("${path.module}/configs/client/client.yaml", {
+    nomad_config    = filebase64("${path.module}/configs/shared/nomad.hcl")
+    systemd_service = filebase64("${path.module}/configs/client/nomad.service")
+    client_config   = filebase64("${path.module}/configs/client/client.hcl")
   })
 }
