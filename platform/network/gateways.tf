@@ -1,6 +1,17 @@
 
+resource "aws_internet_gateway" "ig" {
+  vpc_id = aws_vpc.vpc.id
+
+  tags = {
+    Name = "${var.name}-ig"
+  }
+}
+
 resource "aws_eip" "nat_eip" {
   domain = "vpc"
+  tags = {
+    Name = "${var.name}"
+  }
 }
 
 resource "aws_nat_gateway" "nat" {
@@ -11,4 +22,6 @@ resource "aws_nat_gateway" "nat" {
   tags = {
     Name = "${var.name}-nat"
   }
+
+  depends_on = [aws_internet_gateway.ig]
 }
