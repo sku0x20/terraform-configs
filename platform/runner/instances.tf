@@ -4,7 +4,7 @@ resource "aws_instance" "server" {
 
   ami                    = var.ami
   instance_type          = var.instance_type
-  key_name               = var.ami
+  key_name               = var.key_name
   vpc_security_group_ids = [aws_security_group.instance.id]
   credit_specification {
     cpu_credits = "standard"
