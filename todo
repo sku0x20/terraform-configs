@@ -1,4 +1,0 @@
-# tf configs
-
-- extract to nomad module
-  - pass in vpc, subnets.
