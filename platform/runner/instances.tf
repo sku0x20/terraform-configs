@@ -6,6 +6,7 @@ resource "aws_instance" "server" {
   instance_type          = var.instance_type
   key_name               = var.key_name
   vpc_security_group_ids = [aws_security_group.instance.id]
+  subnet_id = var.subnet_id
   credit_specification {
     cpu_credits = "standard"
   }
