@@ -6,5 +6,5 @@ resource "aws_autoscaling_policy" "scale" {
   adjustment_type        = "ExactCapacity"
   policy_type            = "SimpleScaling"
 
-  scaling_adjustment = 0
+  scaling_adjustment = 3
 }
