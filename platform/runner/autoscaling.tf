@@ -7,7 +7,7 @@ resource "aws_autoscaling_group" "scale" {
   }
   vpc_zone_identifier = [var.subnet_id]
 
-  min_size = 3
+  min_size = 0
   max_size = 9
 
   health_check_grace_period = 300
