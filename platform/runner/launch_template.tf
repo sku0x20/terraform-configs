@@ -29,4 +29,6 @@ resource "aws_launch_template" "template" {
     Name = "${var.name}"
   }
 
+  user_data = file("${path.module}/config/config.yaml")
+
 }
