@@ -4,6 +4,7 @@ resource "aws_autoscaling_group" "scale" {
 
   launch_template {
     id = aws_launch_template.template.id
+    version = aws_launch_template.template.latest_version
   }
   vpc_zone_identifier = [var.subnet_id]
 
