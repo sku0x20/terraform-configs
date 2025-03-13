@@ -3,7 +3,7 @@
 resource "aws_autoscaling_group" "scale" {
 
   launch_template {
-    id = aws_launch_template.template.id
+    id      = aws_launch_template.template.id
     version = aws_launch_template.template.latest_version
   }
   vpc_zone_identifier = [var.subnet_a]
@@ -21,5 +21,14 @@ resource "aws_autoscaling_group" "scale" {
 
   instance_refresh {
     strategy = "Rolling"
+  }
+}
+
+resource "aws_autoscaling_traffic_source_attachment" "scale-with-nlb" {
+  autoscaling_group_name = aws_autoscaling_group.scale.id
+
+  traffic_source {
+    identifier = aws_lb_target_group.nlb_http_tg.arn
+    type       = "elbv2"
   }
 }
