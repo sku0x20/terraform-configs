@@ -5,5 +5,5 @@ output "subnet_a" {
   value = aws_subnet.a.id
 }
 output "subnet_public" {
-  value = aws_subnet.public 
+  value = aws_subnet.public.id
 }
