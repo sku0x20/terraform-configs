@@ -9,5 +9,6 @@ module "runner" {
   source = "./runner"
   name = var.name
   vpc_id = module.network.vpc_id
-  subnet_id = module.network.subnet_id
+  subnet_a = module.network.subnet_a
+  subnet_public = module.network.subnet_public
 }

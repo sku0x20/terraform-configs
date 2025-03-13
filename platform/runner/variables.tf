@@ -6,7 +6,9 @@ variable "name" {
 variable "vpc_id" {
 }
 
-variable "subnet_id" {
+variable "subnet_a" {
+}
+variable "subnet_public" {
 }
 // --
 
