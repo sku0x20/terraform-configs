@@ -10,7 +10,7 @@ resource "aws_internet_gateway" "ig" {
 resource "aws_eip" "nat_eip" {
   domain = "vpc"
   tags = {
-    Name = "${var.name}"
+    Name = "${var.name}-nat"
   }
 }
 
