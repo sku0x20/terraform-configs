@@ -1,7 +1,7 @@
 resource "aws_launch_template" "launch_template" {
   image_id      = var.ami
-  instance_type = var.ami
-  key_name      = var.ami
+  instance_type = var.instance_type
+  key_name      = var.key_name
 
   vpc_security_group_ids = [aws_security_group.sg.id]
 
