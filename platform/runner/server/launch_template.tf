@@ -1,4 +1,4 @@
-resource "aws_launch_template" "launch_template" {
+resource "aws_launch_template" "server" {
   image_id      = var.ami
   instance_type = var.instance_type
   key_name      = var.key_name
@@ -12,7 +12,7 @@ resource "aws_launch_template" "launch_template" {
   tag_specifications {
     resource_type = "instance"
     tags = {
-      Name = "${var.name}-server"
+      Name = "${var.name}-instance"
     }
   }
 
@@ -25,6 +25,6 @@ resource "aws_launch_template" "launch_template" {
   }
 
   tags = {
-    Name = "${var.name}-server"
+    Name = "${var.name}-template"
   }
 }

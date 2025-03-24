@@ -1,6 +1,6 @@
 
-resource "aws_security_group" "sg" {
-  name   = "${var.name}-server"
+resource "aws_security_group" "server" {
+  name   = "${var.name}"
   vpc_id = var.vpc_id
 
   ingress {
