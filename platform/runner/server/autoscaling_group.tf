@@ -4,8 +4,9 @@ resource "aws_autoscaling_group" "server" {
 
   name_prefix = var.name
 
-  max_size = 5
-  min_size = 3
+  max_size         = 5
+  min_size         = 3
+  desired_capacity = 3
 
   launch_template {
     id      = aws_launch_template.server.id
