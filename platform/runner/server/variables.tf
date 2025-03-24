@@ -2,7 +2,7 @@
 variable "name" {
 }
 
-variable "vpc-id" {
+variable "vpc_id" {
 }
 
 variable "subnet_private" {
@@ -18,4 +18,8 @@ variable "key_name" {
 }
 
 variable "instance_type" {
+}
+
+variable "root_block_size" {
+  default = 10  
 }
