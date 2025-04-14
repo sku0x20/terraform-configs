@@ -26,4 +26,8 @@ resource "aws_lb_target_group" "server_nomad_ui" {
   port     = 4646
   protocol = "HTTP"
   vpc_id   = var.vpc_id
+
+  health_check {
+    path = "/ui/"
+  }
 }
