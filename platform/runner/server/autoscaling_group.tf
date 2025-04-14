@@ -28,3 +28,12 @@ resource "aws_autoscaling_group" "server" {
   }
 
 }
+
+resource "aws_autoscaling_traffic_source_attachment" "server_scale_alb" {
+  autoscaling_group_name = aws_autoscaling_group.server.id
+  traffic_source {
+    identifier = aws_lb_target_group.server_nomad_ui.arn
+    type = "elbv2"
+  }
+}
+
