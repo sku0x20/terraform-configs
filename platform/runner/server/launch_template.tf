@@ -29,11 +29,11 @@ resource "aws_launch_template" "server" {
     Name = "${var.name}-template"
   }
 
-  user_data = templatefile("${path.module}/../config/nomad/server/config.yaml", {
+  user_data = base64encode(templatefile("${path.module}/../config/nomad/server/config.yaml", {
     nomad_config = filebase64("${path.module}/../config/nomad/shared/nomad.hcl")
     systemd_service = filebase64("${path.module}/../config/nomad/server/nomad.service")
     server_config = filebase64("${path.module}/../config/nomad/server/server.hcl")
-  })
+  }))
 }
 
 // todo: add aws instance policyl
