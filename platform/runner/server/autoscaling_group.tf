@@ -13,7 +13,7 @@ resource "aws_autoscaling_group" "server" {
     version = aws_launch_template.server.latest_version
   }
 
-  vpc_zone_identifier = [var.subnet_private]
+  vpc_zone_identifier = [var.subnet_a]
 
   health_check_grace_period = 300
   health_check_type         = "EC2"

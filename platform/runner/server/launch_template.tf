@@ -27,4 +27,9 @@ resource "aws_launch_template" "server" {
   tags = {
     Name = "${var.name}-template"
   }
+
+  // todo: 
+  user_data = templatefile()
 }
+
+// todo: add aws instance policyl

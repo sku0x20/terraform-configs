@@ -5,7 +5,7 @@ variable "project_name" {
 variable "vpc_id" {
 }
 
-variable "subnet_private" {
+variable "subnet_a" {
 }
 
 variable "subnet_public" {
