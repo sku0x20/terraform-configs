@@ -24,7 +24,7 @@ resource "aws_autoscaling_group" "server" {
   }
 
   instance_refresh {
-    strategy = "rolling"
+    strategy = "Rolling"
   }
 
 }
