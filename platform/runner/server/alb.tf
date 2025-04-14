@@ -30,6 +30,6 @@ resource "aws_lb_target_group" "server_nomad_ui" {
   vpc_id   = var.vpc_id
 
   health_check {
-    path = "/ui/"
+    path = "/v1/agent/health"
   }
 }
