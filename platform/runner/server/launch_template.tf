@@ -5,6 +5,10 @@ resource "aws_launch_template" "server" {
 
   vpc_security_group_ids = [aws_security_group.server.id]
 
+  iam_instance_profile {
+    arn = aws_iam_instance_profile.server.arn
+  }
+
   credit_specification {
     cpu_credits = "standard"
   }
@@ -35,5 +39,3 @@ resource "aws_launch_template" "server" {
     server_config = filebase64("${path.module}/../config/nomad/server/server.hcl")
   }))
 }
-
-// todo: add aws instance policyl
