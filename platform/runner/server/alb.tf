@@ -6,6 +6,8 @@ resource "aws_lb" "server_alb" {
 
   subnets = [var.subnet_public, var.subnet_public_b]
 
+  security_groups = [aws_security_group.server_alb.id]
+
   tags = {
     Name = "${var.name}-alb"
   }
