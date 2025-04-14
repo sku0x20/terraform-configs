@@ -19,7 +19,7 @@ resource "aws_security_group" "server" {
 }
 
 resource "aws_security_group" "server_alb" {
-  name   = "${var.name}"
+  name   = "${var.name}-alb"
   vpc_id = var.vpc_id
 
   ingress {
