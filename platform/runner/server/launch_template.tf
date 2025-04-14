@@ -13,6 +13,7 @@ resource "aws_launch_template" "server" {
     resource_type = "instance"
     tags = {
       Name = "${var.name}-instance"
+      nomad-instance-type = "server"
     }
   }
 
