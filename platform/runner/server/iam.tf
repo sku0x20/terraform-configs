@@ -27,7 +27,7 @@ resource "aws_iam_role_policy_attachment" "server" {
 
 resource "aws_iam_policy" "server" {
   name   = var.name
-  policy = data.aws_iam_policy_document.server_policy
+  policy = data.aws_iam_policy_document.server_policy.json
 }
 
 data "aws_iam_policy_document" "server_policy" {
