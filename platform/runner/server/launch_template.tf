@@ -3,7 +3,7 @@ resource "aws_launch_template" "server" {
   instance_type = var.instance_type
   key_name      = var.key_name
 
-  vpc_security_group_ids = [aws_security_group.sg.id]
+  vpc_security_group_ids = [aws_security_group.server.id]
 
   credit_specification {
     cpu_credits = "standard"
