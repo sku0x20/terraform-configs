@@ -7,3 +7,6 @@ output "subnet_a" {
 output "subnet_public" {
   value = aws_subnet.public.id
 }
+output "subnet_public_b" {
+  value = aws_subnet.public_b.id
+}

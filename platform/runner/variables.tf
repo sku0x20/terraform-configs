@@ -10,6 +10,8 @@ variable "subnet_a" {
 }
 variable "subnet_public" {
 }
+variable "subnet_public_b" {
+}
 // --
 
 variable "ami" {

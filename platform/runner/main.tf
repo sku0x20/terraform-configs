@@ -5,9 +5,10 @@ module "server" {
   vpc_id = var.vpc_id
   subnet_a = var.subnet_a
   subnet_public = var.subnet_public
-  ami = "ami-00bb0af6826df0a03"
-  key_name = "aws-key"
-  instance_type = "t3.micro"
+  subnet_public_b = var.subnet_public_b
+  ami = var.ami
+  key_name = var.key_name
+  instance_type = var.instance_type
   name = "${var.name}-server"
 }
 

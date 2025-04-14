@@ -4,7 +4,7 @@ resource "aws_lb" "server_alb" {
   load_balancer_type = "application"
   internal           = false
 
-  subnets = [var.subnet_public]
+  subnets = [var.subnet_public, var.subnet_public_b]
 
   tags = {
     Name = "${var.name}-alb"
