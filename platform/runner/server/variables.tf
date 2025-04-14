@@ -1,7 +1,4 @@
 
-variable "project_name" {
-}
-
 variable "vpc_id" {
 }
 
@@ -21,7 +18,6 @@ variable "instance_type" {
 }
 
 variable "name" {
-  default = "${project_name}-server"
 }
 
 variable "root_block_size" {
