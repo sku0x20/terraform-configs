@@ -40,6 +40,7 @@ resource "aws_lb_target_group" "client_nlb_tg" {
   vpc_id             = var.vpc_id
 
   health_check {
+    port = 4646
     path = "/v1/agent/health"
   }
 }
