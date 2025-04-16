@@ -13,7 +13,7 @@ resource "aws_lb" "client_nlb" {
 
   subnet_mapping {
     subnet_id     = var.subnet_public
-    allocation_id = aws_eip.nlb_eip.id
+    allocation_id = aws_eip.client_nlb_eip.id
   }
 
   tags = {
@@ -23,7 +23,7 @@ resource "aws_lb" "client_nlb" {
 }
 
 resource "aws_lb_listener" "client_nlb_listener_http" {
-  load_balancer_arn = aws_lb.nlb.arn
+  load_balancer_arn = aws_lb.client_nlb.arn
   port = 80
   protocol = "TCP_UDP"
 
